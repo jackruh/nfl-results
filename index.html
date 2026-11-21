@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Picker Beta: Paper Results</title>
+<style>
+:root { --fg:#1a1a1a; --muted:#666; --bg:#fafaf8; --panel:#fff; --line:#e4e2dc; --ok:#1f7a4a; --bad:#b3261e; --accent:#2b5fd9; }
+@media (prefers-color-scheme: dark) { :root { --fg:#ececea; --muted:#a3a3a0; --bg:#161616; --panel:#1f1f1f; --line:#333; --ok:#5cc28a; --bad:#ef7b72; --accent:#7aa2ff; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+main { max-width:1100px; margin:0 auto; padding:32px 20px 64px; display:flex; flex-direction:column; gap:36px; }
+h1 { font-family: Georgia, "Times New Roman", serif; font-weight:400; font-size:34px; margin:4px 0 8px; }
+h2 { font-size:19px; font-weight:600; margin:0 0 4px; }
+.tag { display:inline-block; font-size:12px; color:var(--muted); border:1px solid var(--line); border-radius:6px; padding:2px 8px; }
+.note { font-size:13px; color:var(--muted); margin:0 0 10px; max-width:62rem; }
+.tiles { display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:14px; }
+.tile { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; }
+.tile .lbl { font-size:12px; color:var(--muted); }
+.tile .big { font-family:Georgia, serif; font-size:30px; font-variant-numeric:tabular-nums; margin:4px 0; }
+.tile .sub { font-size:12px; color:var(--muted); }
+.wrap { overflow-x:auto; }
+table { border-collapse:collapse; width:100%; font-size:13px; font-variant-numeric:tabular-nums; }
+th, td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); white-space:nowrap; }
+th { color:var(--muted); font-weight:600; }
+.num { text-align:right; }
+.win, .pos { color:var(--ok); } .loss, .neg { color:var(--bad); } .pend { color:var(--muted); }
+.chart { position:relative; min-height:220px; }
+.empty { display:flex; align-items:center; justify-content:center; min-height:200px; color:var(--muted); border:1px dashed var(--line); border-radius:8px; }
+.tip { position:absolute; pointer-events:none; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:6px 8px; font-size:12px; white-space:nowrap; box-shadow:0 2px 8px rgba(0,0,0,.15); }
+details { font-size:13px; color:var(--muted); max-width:62rem; }
+summary { cursor:pointer; color:var(--fg); font-size:15px; }
+footer { font-size:12px; color:var(--muted); }
+a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="tag">Paper picks only. Nothing staked. Every pick posted before kickoff.</span>
+    <h1>NFL Picker Beta: paper results</h1>
+    <p id="takeaway">Loading…</p>
+  </header>
+
+  <section>
+    <h2>This week's picks</h2>
+    <p class="note">Posted about 24 hours before kickoff. Each line is the price at the book shown when posted; prices move, and a worse price may no longer be worth taking.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Kickoff (ET)</th><th>Game</th><th>Player</th><th>Market</th><th>Pick</th><th>Book</th><th class="num">Price</th><th class="num">Edge %</th><th>Posted (ET)</th></tr></thead>
+      <tbody id="open"></tbody>
+    </table></div>
+  </section>
+
+  <section class="tiles">
+    <div class="tile"><div class="lbl">Avg closing-line value (pts)</div><div class="big" id="t-clv">—</div><div class="sub" id="t-ci">95% CI —</div></div>
+    <div class="tile"><div class="lbl">Picks posted / graded</div><div class="big" id="t-n">—</div><div class="sub">All paper, 0 units staked</div></div>
+    <div class="tile"><div class="lbl">Record (W-L-P)</div><div class="big" id="t-rec">—</div><div class="sub">Mostly luck at this size</div></div>
+    <div class="tile"><div class="lbl">Paper units (1 per pick)</div><div class="big" id="t-u">—</div><div class="sub">At the price posted</div></div>
+  </section>
+
+  <section>
+    <h2>Cumulative closing-line value, graded picks</h2>
+    <p class="note">Each point adds one graded pick's closing-line value in probability points. A line that climbs means the market kept moving toward the picks.</p>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <section>
+    <h2>Full record</h2>
+    <p class="note">Every pick ever posted, newest first. Times in US Eastern. Raw data: <a href="data/picks.csv">picks.csv</a>. Commit history on GitHub shows when each pick was published.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>#</th><th>Posted</th><th>Kickoff</th><th>Game</th><th>Player</th><th>Market</th><th>Pick</th><th>Book</th><th class="num">Price</th><th class="num">Edge %</th><th class="num">CLV pts</th><th>Result</th></tr></thead>
+      <tbody id="all"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Backtest of the same rule (not live results)</h2>
+    <p class="note">Historical 24-hour snapshots, props excluding touchdowns, edge 3% or more. No parameters fitted. 2025 was tested first; 2024 was the check, and it did not confirm. Raw data: <a href="data/backtest.csv">backtest.csv</a>.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Sample</th><th class="num">Bets</th><th class="num">CLV pts</th><th class="num">95% CI</th><th class="num">Win %</th><th class="num">Return %</th><th>Verdict</th></tr></thead>
+      <tbody id="bt"></tbody>
+    </table></div>
+  </section>
+
+  <details>
+    <summary>How picks are made and graded</summary>
+    <p><b>The rule.</b> About 24 hours before kickoff, each player prop at US books is compared with Pinnacle's price on the same line, with Pinnacle's margin removed. A pick is posted when a US book's price beats that fair price by 3% or more in expected value. No football model is involved.</p>
+    <p><b>Closing-line value.</b> Pinnacle's no-vig probability at kickoff for the side taken, minus the break-even probability of the posted price, in percentage points. Positive means the market moved toward the pick. It is the main measure, because results over a few hundred bets are mostly luck.</p>
+    <p><b>Interval.</b> Normal approximation, mean ± 1.96 standard errors. Under 200 graded picks, no figure here proves anything.</p>
+    <p><b>Status.</b> Paper only. Nothing is staked until the rule passes a pre-declared gate: positive closing-line value with an interval above zero over 200 or more picks.</p>
+    <p><b>Not advice.</b> For information only. Bet legally, within your means.</p>
+  </details>
+  <footer id="foot"></footer>
+</main>
+
+<script>
+function parseCSV(t) {
+  const rows = []; let row = [], f = '', q = false;
+  for (let i = 0; i < t.length; i++) {
+    const c = t[i];
+    if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(f); f = ''; }
+    else if (c === '\n') { row.push(f); rows.push(row); row = []; f = ''; }
+    else if (c !== '\r') f += c;
+  }
+  if (f !== '' || row.length) { row.push(f); rows.push(row); }
+  const h = rows.shift();
+  return rows.filter((r) => r.length === h.length).map((r) => Object.fromEntries(h.map((k, i) => [k, r[i]])));
+}
+const num = (v) => (v === '' || v == null ? NaN : +v);
+const signed = (v, d = 2) => (Number.isFinite(v) ? (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(d) : '—');
+const et = (s) => { const d = new Date(s); return isNaN(d) ? '—' : d.toLocaleString('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); };
+function td(tr, text, cls) { const c = tr.insertCell(); c.textContent = text; if (cls) c.className = cls; }
+
+async function load() {
+  const bust = '?v=' + Date.now();
+  const [p, b] = await Promise.all([fetch('data/picks.csv' + bust).then((r) => r.text()), fetch('data/backtest.csv' + bust).then((r) => r.text())]);
+  const picks = parseCSV(p), bt = parseCSV(b);
+  const now = Date.now();
+
+  const open = picks.filter((r) => r.result === 'Pending' && new Date(r.kickoff_utc) > now).sort((a, c) => new Date(a.kickoff_utc) - new Date(c.kickoff_utc));
+  const ob = document.getElementById('open');
+  if (!open.length) { const tr = ob.insertRow(); td(tr, 'No open picks right now. The next card posts about 24 hours before the next kickoffs.', 'pend'); tr.cells[0].colSpan = 9; }
+  open.forEach((r) => { const tr = ob.insertRow(); td(tr, et(r.kickoff_utc)); td(tr, r.game); td(tr, r.player); td(tr, r.market); td(tr, r.pick); td(tr, r.book); td(tr, r.price, 'num'); td(tr, num(r.edge_pct).toFixed(1), 'num'); td(tr, et(r.posted_utc)); });
+
+  const graded = picks.filter((r) => r.result && r.result !== 'Pending');
+  const clv = graded.map((r) => num(r.clv_pts)).filter(Number.isFinite);
+  const n = clv.length, mean = n ? clv.reduce((a, c) => a + c, 0) / n : NaN;
+  const sd = n > 1 ? Math.sqrt(clv.reduce((a, c) => a + (c - mean) ** 2, 0) / (n - 1)) : NaN;
+  const half = 1.96 * sd / Math.sqrt(n);
+  const w = graded.filter((r) => r.result === 'Win').length, l = graded.filter((r) => r.result === 'Loss').length;
+  const pu = graded.filter((r) => r.result === 'Push' || r.result === 'Void').length;
+  const units = graded.map((r) => num(r.units)).filter(Number.isFinite).reduce((a, c) => a + c, 0);
+  document.getElementById('t-clv').textContent = signed(mean);
+  document.getElementById('t-ci').textContent = n > 1 ? `95% CI ${signed(mean - half)} to ${signed(mean + half)}` : '95% CI needs 2+ graded picks';
+  document.getElementById('t-n').textContent = `${picks.length} / ${graded.length}`;
+  document.getElementById('t-rec').textContent = `${w}-${l}-${pu}`;
+  document.getElementById('t-u').textContent = graded.length ? signed(units) : '—';
+  document.getElementById('takeaway').textContent = n
+    ? `Average closing-line value is ${signed(mean)} points over ${n} graded picks; its 95% interval ${n < 2 ? 'needs more picks' : mean - half > 0 ? 'sits above zero' : mean + half < 0 ? 'sits below zero' : 'includes zero'}.${n < 200 ? ' Under 200 picks, this proves nothing.' : ''}`
+    : `${picks.length} paper picks posted so far, none graded yet. Each pick is graded against Pinnacle's closing line after its game.`;
+
+  const ab = document.getElementById('all');
+  [...picks].sort((a, c) => num(c.pick_id) - num(a.pick_id)).forEach((r) => {
+    const tr = ab.insertRow(); const c = num(r.clv_pts);
+    td(tr, r.pick_id); td(tr, et(r.posted_utc)); td(tr, et(r.kickoff_utc)); td(tr, r.game); td(tr, r.player); td(tr, r.market); td(tr, r.pick); td(tr, r.book);
+    td(tr, r.price, 'num'); td(tr, num(r.edge_pct).toFixed(1), 'num');
+    td(tr, signed(c), 'num' + (c > 0 ? ' pos' : c < 0 ? ' neg' : ''));
+    td(tr, r.result, r.result === 'Win' ? 'win' : r.result === 'Loss' ? 'loss' : 'pend');
+  });
+
+  const bb = document.getElementById('bt');
+  bt.forEach((r) => { const tr = bb.insertRow(); td(tr, r.sample); td(tr, r.bets, 'num'); td(tr, signed(num(r.clv_pts)), 'num'); td(tr, `${signed(num(r.clv_lo))} to ${signed(num(r.clv_hi))}`, 'num'); td(tr, num(r.win_pct).toFixed(1), 'num'); td(tr, signed(num(r.return_pct), 1), 'num'); td(tr, r.verdict); });
+
+  drawChart(graded.filter((r) => Number.isFinite(num(r.clv_pts))).sort((a, c) => num(a.pick_id) - num(c.pick_id)));
+  const last = picks.map((r) => new Date(r.posted_utc)).filter((d) => !isNaN(d)).sort((a, c) => c - a)[0];
+  document.getElementById('foot').textContent = last ? `Last pick posted ${et(last)} ET.` : '';
+}
+
+function drawChart(g) {
+  const el = document.getElementById('chart'); el.replaceChildren();
+  if (!g.length) { const d = document.createElement('div'); d.className = 'empty'; d.textContent = 'No graded picks yet. The line starts after the first games are graded.'; el.append(d); return; }
+  let cum = 0; const pts = g.map((r, i) => ({ i: i + 1, cum: (cum += num(r.clv_pts)), r }));
+  const W = Math.max(300, el.clientWidth), H = 240, m = { t: 12, r: 16, b: 28, l: 46 };
+  const lo = Math.min(0, ...pts.map((p) => p.cum)), hi = Math.max(0, ...pts.map((p) => p.cum)), pad = (hi - lo) * 0.1 || 1;
+  const x = (i) => m.l + (pts.length > 1 ? (i - 1) / (pts.length - 1) : 0.5) * (W - m.l - m.r);
+  const y = (v) => H - m.b - (v - (lo - pad)) / (hi - lo + 2 * pad) * (H - m.t - m.b);
+  const ns = 'http://www.w3.org/2000/svg', mk = (t, a) => { const e = document.createElementNS(ns, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const svg = mk('svg', { width: '100%', viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `Cumulative closing-line value over ${pts.length} graded picks, now ${signed(cum)} points` });
+  svg.append(mk('line', { x1: m.l, x2: W - m.r, y1: y(0), y2: y(0), stroke: 'currentColor', 'stroke-opacity': 0.35, 'stroke-dasharray': '3 3' }));
+  [lo - pad, 0, hi + pad].forEach((v) => { const t = mk('text', { x: m.l - 6, y: y(v) + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'currentColor', opacity: 0.6 }); t.textContent = v.toFixed(1); svg.append(t); });
+  svg.append(mk('path', { d: pts.map((p, k) => `${k ? 'L' : 'M'}${x(p.i)},${y(p.cum)}`).join(''), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 2 }));
+  const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true;
+  pts.forEach((p) => {
+    const c = mk('circle', { cx: x(p.i), cy: y(p.cum), r: 4, fill: 'var(--accent)' });
+    c.addEventListener('pointerenter', (ev) => { tip.textContent = `#${p.r.pick_id} ${p.r.player} ${p.r.pick}: ${signed(num(p.r.clv_pts))} pts (total ${signed(p.cum)})`; tip.hidden = false; const b = el.getBoundingClientRect(); tip.style.left = Math.min(ev.clientX - b.left + 10, b.width - tip.offsetWidth - 4) + 'px'; tip.style.top = (ev.clientY - b.top - 36) + 'px'; });
+    c.addEventListener('pointerleave', () => { tip.hidden = true; });
+    svg.append(c);
+  });
+  el.style.color = 'var(--fg)'; el.append(svg, tip);
+}
+load().catch(() => { document.getElementById('takeaway').textContent = 'The pick data failed to load. Try refreshing.'; });
+</script>
+</body>
+</html>

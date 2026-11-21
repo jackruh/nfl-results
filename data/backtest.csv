@@ -1,0 +1,4 @@
+sample,bets,clv_pts,clv_lo,clv_hi,clv_n,win_pct,win_lo,win_hi,return_pct,ret_lo,ret_hi,verdict
+2024 (weeks 1-10),135,0.22,-0.43,0.86,94,48.9,40.6,57.2,0.4,-16.7,18.0,"Not confirmed: interval includes zero, under 200 bets"
+2025 (full season),396,0.63,0.37,0.9,358,51.3,46.4,56.1,4.1,-5.9,14.2,"Positive, one season"
+Both seasons,531,0.54,0.29,0.8,452,50.7,46.4,54.9,3.1,-5.7,11.9,Informational only
