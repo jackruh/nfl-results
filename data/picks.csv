@@ -3,17 +3,17 @@ pick_id,week,posted_utc,kickoff_utc,game,player,market,pick,book,price,fair_prob
 2,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T21:25Z,JAX @ NYG,Theo Johnson,Receiving yds,Under 9.5,BetOnline,-111,55.7,5.9,,,Pending,,Paper
 3,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T21:25Z,JAX @ NYG,Cam Skattebo,Receptions,Over 2.5,DraftKings,+138,44.1,4.9,,,Pending,,Paper
 4,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-23T01:20Z,MIN @ SF,Christian McCaffrey,Receptions,Under 3.5,DraftKings,+126,46.3,4.6,,,Pending,,Paper
-5,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T18:00Z,PIT @ PHI,Joe Milton,Rushing yds,Over 34.5,FanDuel,-114,55.2,3.7,50.0,-3.27,Pending,,Paper
-6,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T18:00Z,MIA @ BUF,Josh Allen,Rush attempts,Over 6.5,Fanatics,+115,48.1,3.4,,,Pending,,Paper
+5,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T18:00Z,PIT @ PHI,Joe Milton,Rushing yds,Over 34.5,FanDuel,-114,55.2,3.7,50.0,-3.27,Loss,-1.0,Paper
+6,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T18:00Z,MIA @ BUF,Josh Allen,Rush attempts,Over 6.5,Fanatics,+115,48.1,3.4,,,Loss,-1.0,Paper
 7,2026 Wk 11,2026-11-21T06:46:11Z,2026-11-22T21:25Z,JAX @ NYG,Trevor Lawrence,Rush attempts,Over 3.5,DraftKings,+121,46.8,3.4,,,Pending,,Paper
 8,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T21:25Z,JAX @ NYG,Cam Skattebo,Rush attempts,Under 15.5,Bovada,+105,51.3,5.1,,,Pending,,Paper
-9,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Noah Gray,Receiving yds,Under 13.5,DraftKings,-111,55.0,4.5,,,Pending,,Paper
-10,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,PIT @ PHI,DK Metcalf,Receptions,Under 3.5,Fanatics,-105,53.3,4.2,49.6,-1.65,Pending,,Paper
+9,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Noah Gray,Receiving yds,Under 13.5,DraftKings,-111,55.0,4.5,,,Loss,-1.0,Paper
+10,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,PIT @ PHI,DK Metcalf,Receptions,Under 3.5,Fanatics,-105,53.3,4.2,49.6,-1.65,Win,0.952,Paper
 11,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-23T01:20Z,MIN @ SF,T.J. Hockenson,Receiving yds,Over 44.5,FanDuel,-113,55.1,3.9,,,Pending,,Paper
-12,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,PIT @ PHI,DeVonta Smith,Receiving yds,Over 53.5,FanDuel,-113,55.1,3.9,49.1,-3.92,Pending,,Paper
-13,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Emmett Johnson,Receiving yds,Over 26.5,FanDuel,-113,54.9,3.5,,,Pending,,Paper
+12,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,PIT @ PHI,DeVonta Smith,Receiving yds,Over 53.5,FanDuel,-113,55.1,3.9,49.1,-3.92,Loss,-1.0,Paper
+13,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Emmett Johnson,Receiving yds,Over 26.5,FanDuel,-113,54.9,3.5,,,Win,0.885,Paper
 14,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Reggie Virgil,Receiving yds,Under 13.5,FanDuel,-113,54.9,3.5,52.9,-0.14,Pending,,Paper
 15,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T21:25Z,JAX @ NYG,Brian Thomas Jr,Receptions,Over 1.5,BetRivers,+160,39.8,3.4,,,Pending,,Paper
 16,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-24T01:15Z,CIN @ WAS,Stefon Diggs,Receptions,Under 4.5,BetMGM,-105,52.8,3.2,,,Pending,,Paper
-17,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Devin Duvernay,Receiving yds,Over 8.5,FanDuel,-113,54.7,3.1,54.3,1.27,Pending,,Paper
+17,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Devin Duvernay,Receiving yds,Over 8.5,FanDuel,-113,54.7,3.1,54.3,1.27,Loss,-1.0,Paper
 18,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T21:25Z,JAX @ NYG,Malik Nabers,Receiving yds,Under 69.5,FanDuel,-113,54.7,3.1,,,Pending,,Paper
