@@ -51,6 +51,23 @@ a { color:var(--accent); }
     </table></div>
   </section>
 
+  <section id="leans-section">
+    <h2>Leans: spreads, totals and touchdowns</h2>
+    <p class="note">A lean is a bet where the best US price beats Pinnacle's no-vig fair price, so the book is out of line with the sharpest market. It says nothing about who wins: leans have no tested edge, are graded separately from the picks above and below, and do not count toward the record. Prices are from the snapshot time shown and move fast.</p>
+    <div class="wrap"><table>
+      <thead><tr><th>Game</th><th>Lean</th><th>Book</th><th class="num">Price</th><th>Pinnacle</th><th class="num">Fair %</th><th class="num">EV %</th><th>Snapshot (ET)</th></tr></thead>
+      <tbody id="leans"></tbody>
+    </table></div>
+    <details id="board-details" style="margin-top:12px">
+      <summary>Full price board: best book for every side</summary>
+      <p class="note">Every spread, total and closest-to-fair touchdown price. EV at best vs worst book shows what shopping is worth. Negative EV is the normal cost of the vig. Lines at other numbers are converted using how often NFL games landed on each number, 2016-2025.</p>
+      <div class="wrap"><table>
+        <thead><tr><th>Game</th><th>Bet</th><th>Best book</th><th class="num">Price</th><th>Pinnacle</th><th class="num">Fair %</th><th class="num">EV at best</th><th class="num">EV at worst</th></tr></thead>
+        <tbody id="board"></tbody>
+      </table></div>
+    </details>
+  </section>
+
   <section class="tiles">
     <div class="tile"><div class="lbl">Avg closing-line value (pts)</div><div class="big" id="t-clv">—</div><div class="sub" id="t-ci">95% CI —</div></div>
     <div class="tile"><div class="lbl">Picks posted / graded</div><div class="big" id="t-n">—</div><div class="sub">All paper, 0 units staked</div></div>
@@ -152,6 +169,18 @@ async function load() {
 
   const bb = document.getElementById('bt');
   bt.forEach((r) => { const tr = bb.insertRow(); td(tr, r.sample); td(tr, r.bets, 'num'); td(tr, signed(num(r.clv_pts)), 'num'); td(tr, `${signed(num(r.clv_lo))} to ${signed(num(r.clv_hi))}`, 'num'); td(tr, num(r.win_pct).toFixed(1), 'num'); td(tr, signed(num(r.return_pct), 1), 'num'); td(tr, r.verdict); });
+
+  try {
+    const [bd, ln] = await Promise.all([fetch('data/board.csv' + bust).then((r) => (r.ok ? r.text() : '')), fetch('data/leans.csv' + bust).then((r) => (r.ok ? r.text() : ''))]);
+    const board = bd ? parseCSV(bd) : [], leans = ln ? parseCSV(ln) : [];
+    const snapTime = board.length ? board[0].snapshot_utc : null;
+    const cur = leans.filter((r) => r.snapshot_utc === snapTime || r.result === 'Pending');
+    const lb = document.getElementById('leans');
+    if (!cur.length) { const tr = lb.insertRow(); td(tr, 'No leans in the latest snapshot: no US price beats fair.', 'pend'); tr.cells[0].colSpan = 8; }
+    cur.sort((a, c) => num(c.ev_pct) - num(a.ev_pct)).forEach((r) => { const tr = lb.insertRow(); td(tr, r.game); td(tr, r.bet); td(tr, r.book); td(tr, r.price, 'num'); td(tr, r.pinnacle); td(tr, num(r.fair_pct).toFixed(1), 'num'); td(tr, signed(num(r.ev_pct), 1), 'num pos'); td(tr, et(r.snapshot_utc)); });
+    const bb2 = document.getElementById('board');
+    board.forEach((r) => { const tr = bb2.insertRow(); const e = num(r.ev_pct); td(tr, r.game); td(tr, r.bet); td(tr, r.book); td(tr, r.price, 'num'); td(tr, r.pinnacle); td(tr, num(r.fair_pct).toFixed(1), 'num'); td(tr, signed(e, 1), 'num' + (e > 0 ? ' pos' : '')); td(tr, signed(num(r.worst_ev_pct), 1), 'num'); });
+  } catch (e) { /* board is optional */ }
 
   drawChart(graded.filter((r) => Number.isFinite(num(r.clv_pts))).sort((a, c) => num(a.pick_id) - num(c.pick_id)));
   const last = picks.map((r) => new Date(r.posted_utc)).filter((d) => !isNaN(d)).sort((a, c) => c - a)[0];

@@ -1,0 +1,6 @@
+lean_id,snapshot_utc,game_id,game,market,side,bet,line,book,price,pinnacle,fair_pct,ev_pct,worst_ev_pct,close_fair_pct,clv_pts,result
+1,2026-11-22T02:31:09Z,2026_11_ARI_KC,ARI at KC,spreads,away,Arizona Cardinals +16.5,16.5,FanDuel,-115,+16.5 -125,54.0,0.9,-7.6,,,Pending
+2,2026-11-22T02:31:09Z,2026_11_CIN_WAS,CIN at WAS,totals,over,Over 54,54.0,BetRivers,-107,55 -106,49.8,2.8,-4.8,,,Pending
+3,2026-11-22T02:31:09Z,2026_11_JAX_NYG,JAX at NYG,totals,under,Under 46,46.0,BetRivers,-110,45 -107,50.0,0.3,-4.4,,,Pending
+4,2026-11-22T02:31:09Z,2026_11_LV_DEN,LV at DEN,totals,over,Over 40.5,40.5,Caesars,-106,41 -107,50.0,0.4,-4.4,,,Pending
+5,2026-11-22T02:31:09Z,2026_11_MIA_BUF,MIA at BUF,spreads,away,Miami Dolphins +16.5,16.5,Caesars,-105,+17 -120,53.0,0.4,-5.4,,,Pending
