@@ -17,3 +17,4 @@ pick_id,week,posted_utc,kickoff_utc,game,player,market,pick,book,price,fair_prob
 16,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-24T01:15Z,CIN @ WAS,Stefon Diggs,Receptions,Under 4.5,BetMGM,-105,52.8,3.2,46.1,-5.14,Win,0.952,Paper
 17,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T18:00Z,ARI @ KC,Devin Duvernay,Receiving yds,Over 8.5,FanDuel,-113,54.7,3.1,54.3,1.27,Loss,-1.0,Paper
 18,2026 Wk 11,2026-11-22T02:31:09Z,2026-11-22T21:25Z,JAX @ NYG,Malik Nabers,Receiving yds,Under 69.5,FanDuel,-113,54.7,3.1,54.5,1.47,Win,0.885,Paper
+19,2026 Wk 12,2026-11-25T01:01:48Z,2026-11-26T01:00Z,GB @ LA,MarShawn Lloyd,Receiving yds,Under 7.5,DraftKings,-104,52.6,3.2,,,Pending,,Paper
