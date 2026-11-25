@@ -1,17 +1,17 @@
 snapshot_utc,game_id,game,market,side,bet,line,book,price,pinnacle,fair_pct,ev_pct,worst_ev_pct
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,spreads,home,Detroit Lions +1.5,1.5,Caesars,-105,+1 -105,49.8,-0.4,-4.9
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,spreads,away,Chicago Bears -1,-1.0,BetOnline,-110,-1 -107,50.2,-4.0,-8.1
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,totals,over,Over 55.5,55.5,DraftKings,-104,55.5 -105,49.4,-3.0,-6.4
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,totals,under,Under 55.5,55.5,FanDuel,-108,55.5 -110,50.6,-2.6,-5.5
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,D'Andre Swift anytime TD,0.5,BetRivers,-110,-126,53.4,2.0,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Colston Loveland anytime TD,0.5,BetMGM,145,+135,40.0,-2.0,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Kyle Monangai anytime TD,0.5,Bovada,165,+155,36.5,-3.4,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Jahmyr Gibbs anytime TD,0.5,DraftKings,-260,-230,67.7,-6.2,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Amon-Ra St. Brown anytime TD,0.5,Caesars,-141,-133,54.8,-6.3,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Rome Odunze anytime TD,0.5,BetMGM,185,+180,32.9,-6.3,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Luther Burden III anytime TD,0.5,BetMGM,150,+150,37.3,-6.7,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Sam LaPorta anytime TD,0.5,BetMGM,200,+201,30.3,-9.0,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Jameson Williams anytime TD,0.5,Fanatics,200,+212,29.2,-12.4,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Kalif Raymond anytime TD,0.5,BetMGM,360,+360,18.6,-14.5,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Caleb Williams anytime TD,0.5,DraftKings,350,+360,18.6,-16.5,
-2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,Isaac TeSlaa anytime TD,0.5,DraftKings,450,+462,14.5,-20.4,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,spreads,home,Dallas Cowboys -8.5,-8.5,BetMGM,-108,-8.5 -108,50.5,-2.8,-5.4
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,spreads,away,Philadelphia Eagles +9,9.0,BetOnline,-110,+8.5 -104,49.5,-3.5,-5.4
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,totals,over,Over 48,48.0,Caesars,-107,47.5 -114,51.6,-2.8,-5.4
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,totals,under,Under 47.5,47.5,FanDuel,100,47.5 +100,48.4,-3.2,-5.9
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Javonte Williams anytime TD,0.5,DraftKings,-170,-172,61.1,-2.9,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,CeeDee Lamb anytime TD,0.5,BetRivers,-143,-145,56.9,-3.3,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,DeVonta Smith anytime TD,0.5,BetMGM,200,+186,32.2,-3.5,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,George Pickens anytime TD,0.5,BetRivers,102,+106,46.1,-6.8,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Dallas Goedert anytime TD,0.5,FanDuel,330,+308,21.4,-8.0,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Joe Milton anytime TD,0.5,BetMGM,300,+287,22.8,-8.8,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Ryan Flournoy anytime TD,0.5,Fanatics,300,+288,22.7,-9.1,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Saquon Barkley anytime TD,0.5,DraftKings,110,+120,43.0,-9.7,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Brevyn Spann-Ford anytime TD,0.5,BetMGM,425,+390,17.2,-9.8,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Makai Lemon anytime TD,0.5,BetMGM,425,+400,16.7,-12.1,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Darius Cooper anytime TD,0.5,FanDuel,550,+540,12.2,-20.6,
+2026-11-25T21:30:34Z,2026_12_PHI_DAL,PHI at DAL,anytime_td,yes,Dak Prescott anytime TD,0.5,FanDuel,650,+615,10.5,-21.3,
