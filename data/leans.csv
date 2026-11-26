@@ -6,3 +6,5 @@ lean_id,snapshot_utc,game_id,game,market,side,bet,line,book,price,pinnacle,fair_
 5,2026-11-22T02:31:09Z,2026_11_MIA_BUF,MIA at BUF,spreads,away,Miami Dolphins +16.5,16.5,Caesars,-105,+17 -120,53.0,0.4,-5.4,17.0,0.4984,-1.38,17.0,Loss,
 6,2026-11-25T01:02:12Z,2026_12_GB_LA,GB at LA,totals,under,Under 43.5,43.5,DraftKings,101,44.5 -120,52.8,0.1,-3.7,,,,,Pending,
 7,2026-11-25T18:01:31Z,2026_12_CHI_DET,CHI at DET,anytime_td,yes,D'Andre Swift anytime TD,0.5,BetRivers,-110,-126,53.4,2.0,,,,,,Pending,
+8,2026-11-26T01:21:04Z,2026_12_KC_BUF,KC at BUF,anytime_td,yes,Rashee Rice anytime TD,0.5,BetMGM,240,+207,29.7,1.1,,,,,,Pending,
+9,2026-11-26T01:21:04Z,2026_12_KC_BUF,KC at BUF,anytime_td,yes,Josh Allen anytime TD,0.5,BetRivers,-109,-120,52.2,0.1,,,,,,Pending,
